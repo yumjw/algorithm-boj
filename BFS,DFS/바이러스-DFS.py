@@ -1,3 +1,4 @@
+# DFS
 N = int(input())
 Lines = int(input())
 
@@ -11,8 +12,8 @@ for i in range(Lines):
 
 def dfs(graph, v, visited):
     visited[v] = True
+
     visited_list = []
-    # print(v)
     visited_list.append(v)
 
     for i in graph[v]:
