@@ -1,7 +1,9 @@
 # 시간초과 주의, list에 넣지 말고 그 전 최근 값을 기억하면 된다.
+# Max나 Min값 같은게 필요한 경우 리스트에서 매번 구하는 것보단 변수에 저장해놓고 업데이트하자.
 import sys
 
 T = int(input())
+
 for i in range(T):
 
     N = int(input())
@@ -12,6 +14,7 @@ for i in range(T):
         applicant = list(map(int, sys.stdin.readline().split()))
         applicant_list.append(applicant)
 
+    applicant_list.sort()
     max_value = applicant_list[0][1]
 
     for cv_rank in range(1, N):
@@ -21,29 +24,3 @@ for i in range(T):
             max_value = interview_rank
 
     print(count)
-
-
-# 정답
-
-import sys
-
-T = int(input())  # 테스트케이스
-
-for i in range(0, T):
-    Cnt = 1
-    people = []
-
-    N = int(input())
-    for i in range(N):
-        Paper, Interview = map(int, sys.stdin.readline().split())
-        people.append([Paper, Interview])
-
-    people.sort()  # 서류 기준 오름차순 정렬
-    Max = people[0][1]
-
-    for i in range(1, N):
-        if Max > people[i][1]:
-            Cnt += 1
-            Max = people[i][1]
-
-    print(Cnt)
