@@ -6,8 +6,8 @@ graph = [[] for _ in range(N+1)]
 dfs_result = []
 bfs_result = []
 
-visited = [False]*(N+1)
 queue = deque()
+stack = []
 
 for i in range(M):
     node1, node2 = map(int, input().split())
@@ -18,21 +18,41 @@ for node in graph:
     node.sort()
 
 
-# dfs
-def dfs(v, graph, visited):
-    visited[v] = True
-    dfs_result.append(v)
-
-    for i in graph[v]:
-        if not visited[i]:
-            dfs(i, graph, visited)
-
-dfs(V, graph, visited)
-print(' '.join(list(map(str,dfs_result))))
-
-
+# dfs - Stack version
 visited = [False]*(N+1)
+
+stack.append(V)
+visited[V] = True
+dfs_result.append(V)
+
+while stack:
+    current_node = stack.pop()
+    adj_nodes = graph[current_node]
+    for i in adj_nodes:
+        if not visited[i]:
+            visited[i] = True
+            stack.append(i)
+            dfs_result.append(i)
+            break
+
+## dfs - Recursive fn version
+# visited = [False]*(N+1)
+
+# def dfs(v, graph, visited):
+#     visited[v] = True
+#     dfs_result.append(v)
+#
+#     for i in graph[v]:
+#         if not visited[i]:
+#             dfs(i, graph, visited)
+#
+# dfs(V, graph, visited)
+print(' '.join(list(map(str, dfs_result))))
+
+
 # bfs
+visited = [False]*(N+1)
+
 visited[V] = True
 queue.append(V)
 bfs_result.append(V)

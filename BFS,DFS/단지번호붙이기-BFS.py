@@ -37,4 +37,7 @@ for coordinate in coordinates_list:
 
         apartments_complex.append(count)
 
-print(apartments_complex)
+apartments_complex.sort()
+print(len(apartments_complex))
+for i in apartments_complex:
+    print(i)
