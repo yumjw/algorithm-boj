@@ -18,35 +18,18 @@ for node in graph:
     node.sort()
 
 
-# dfs - Stack version
+## dfs - Recursive fn version
 visited = [False]*(N+1)
 
-stack.append(V)
-visited[V] = True
-dfs_result.append(V)
+def dfs(v, graph, visited):
+    visited[v] = True
+    dfs_result.append(v)
 
-while stack:
-    current_node = stack.pop()
-    adj_nodes = graph[current_node]
-    for i in adj_nodes:
+    for i in graph[v]:
         if not visited[i]:
-            visited[i] = True
-            stack.append(i)
-            dfs_result.append(i)
-            break
+            dfs(i, graph, visited)
 
-## dfs - Recursive fn version
-# visited = [False]*(N+1)
-
-# def dfs(v, graph, visited):
-#     visited[v] = True
-#     dfs_result.append(v)
-#
-#     for i in graph[v]:
-#         if not visited[i]:
-#             dfs(i, graph, visited)
-#
-# dfs(V, graph, visited)
+dfs(V, graph, visited)
 print(' '.join(list(map(str, dfs_result))))
 
 
