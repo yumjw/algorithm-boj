@@ -1,3 +1,5 @@
+## idea는 Okay. 근데 로직을 다시 보자.
+
 import sys
 
 N = int(input())
