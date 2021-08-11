@@ -8,13 +8,13 @@ for _ in range(N):
     row = list(sys.stdin.readline().rstrip())
     graph.append(row)
 
-visited = [([False]*N) for _ in range(N)]
 nodes = [[y, x] for y in range(N) for x in range(N)]
 dy = [0, 0, -1, 1]
 dx = [-1, 1, 0, 0]
-count = 0
 
-def dfs_general(start_node):
+general_count = 0
+visited = [([False]*N) for _ in range(N)]
+def dfs(start_node):
     y, x = start_node
     visited[y][x] = True
     node_color = graph[y][x]
@@ -25,12 +25,28 @@ def dfs_general(start_node):
 
         if 0 <= new_y < N and 0 <= new_x < N:
             if not visited[new_y][new_x] and graph[new_y][new_x] == node_color:
-                dfs_general([new_y, new_x])
+                dfs([new_y, new_x])
 
 for node in nodes:
     y, x = node
     if not visited[y][x]:
-        dfs_general(node)
-        count += 1
+        dfs(node)
+        general_count += 1
 
-print(count)
+
+for y, row in enumerate(graph):
+    for x, element in enumerate(row):
+        if graph[y][x] == 'G':
+            graph[y][x] = 'R'
+
+
+special_count = 0
+visited = [([False]*N) for _ in range(N)]
+
+for node in nodes:
+    y, x = node
+    if not visited[y][x]:
+        dfs(node)
+        special_count += 1
+
+print(f'{general_count} {special_count}')
