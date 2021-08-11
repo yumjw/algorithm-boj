@@ -3,8 +3,8 @@ sys.setrecursionlimit(1000000)
 
 N = int(input())
 max_rain = 0
+max_count = 0
 graph = []
-count_list = []
 
 for i in range(N):
     row = list(map(int, sys.stdin.readline().rstrip().split()))
@@ -39,6 +39,7 @@ for rain in range(max_rain):
         if not visited[y][x] and graph[y][x] > rain:
             dfs([y, x], rain)
             count += 1
-    count_list.append(count)
+    if max_count < count:
+        max_count = count
 
-print(max(count_list))
+print(max_count)
