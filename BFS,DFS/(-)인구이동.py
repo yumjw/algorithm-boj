@@ -14,7 +14,7 @@ countries = [[r, c] for r in range(N) for c in range(N)]
 dr = [-1, 1, 0, 0]
 dc = [0, 0, -1, 1]
 
-current_day = 1
+current_day = 0
 keep_going = True
 
 while True:
@@ -22,9 +22,8 @@ while True:
     keep_going = False
     for country in countries:
         r, c = country
-        print(visited)
 
-        if visited[r][c]+1 == current_day:
+        if not visited[r][c]:
 
             queue = deque()
             united = []
