@@ -1,3 +1,4 @@
+# https://www.acmicpc.net/problem/1389
 from collections import deque
 
 N, M = map(int, input().split())
@@ -35,7 +36,6 @@ for person in range(1, N+1):
                 visited[i] = True
             else:
                 original_score = visited_score[i]
-                this_score =
 
     kv_list.append((sum(visited_score) - 1, person))
 
