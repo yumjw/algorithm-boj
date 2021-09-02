@@ -1,3 +1,5 @@
+# https://www.acmicpc.net/submit/1463
+# 무작정 조건문을 이용하면...+1을 무식하게 많이 하는 경우의 수가 생긴다. DP 써라.
 N = int(input())
 memoization = [0] * (N+1)
 
